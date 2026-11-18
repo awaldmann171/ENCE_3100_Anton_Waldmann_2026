@@ -1,0 +1,12 @@
+# Analysis reference: 20 ns period = 50 MHz, not the speed of the button.
+# This constraint lets TimeQuest analyze the registered accumulator paths.
+create_clock -name manual_clock -period 20.000 [get_ports {KEY[1]}]
+derive_clock_uncertainty
+
+# Reset is asynchronous; exclude assertion from ordinary data timing.
+set_false_path -from [get_ports {KEY[0]}]
+
+# SW and LEDR are manual user interfaces, not synchronous external devices.
+# These cuts restrict timing results to internal register-to-register paths.
+set_false_path -from [get_ports {SW[*]}]
+set_false_path -to [get_ports {LEDR[*]}]
