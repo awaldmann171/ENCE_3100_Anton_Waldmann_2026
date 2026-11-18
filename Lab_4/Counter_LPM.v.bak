@@ -1,0 +1,15 @@
+module Counter_LPM (
+    input clk,
+    input ena,
+    input clear,
+    output [15:0] Q
+);
+
+    Counter_IP counter_0 (
+        .clock(clk),
+        .cnt_en(ena),
+        .sclr(~clear),
+        .q(Q)
+    );
+
+endmodule

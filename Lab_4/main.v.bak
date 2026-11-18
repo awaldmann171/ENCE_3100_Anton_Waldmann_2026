@@ -1,0 +1,14 @@
+module main(
+	// Pinout Assignment
+	input		[9:0]		SW,
+	output	[9:0]		LEDR
+);
+
+TFlipFlop TFF_1(
+	.T(SW[0]),
+	.clk(SW[9]),
+	.clear(SW[8]),
+	.Qt(LEDR[0])
+);
+	
+endmodule
